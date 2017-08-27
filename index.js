@@ -18,7 +18,7 @@ passportCtrl(passport,app);
 
 
 //Routes
-RouteController(app);
+RouteController(app,passport);
 
 app.listen(3000);
-console.log("Server Running");
+console.log("Server Running at 3000");

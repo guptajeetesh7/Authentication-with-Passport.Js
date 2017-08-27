@@ -8,6 +8,10 @@ module.exports = function(app){
 
     app.get('/',function(req,res){
        res.render('login');
-        //res.json({type:"GET"});
-    });
+     });
+
+     app.get('/signup',function(req,res){
+        res.render('signup');
+     });
+     
 };

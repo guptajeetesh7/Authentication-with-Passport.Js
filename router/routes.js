@@ -23,6 +23,19 @@ module.exports = function(app , passport){
        res.render('login');
      });
 
+     app.post('/',urlencodedParser, passport.authenticate('local', { failureRedirect: '/' ,
+                                                                    successRedirect: '/home/profile' }),
+        function(req,res){
+              console.log(req.body);
+              res.render('login');
+      });
+
+
+
+
+
+
+
      app.get('/signup',function(req,res){
         res.render('signup');
      });

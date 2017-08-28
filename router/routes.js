@@ -29,24 +29,36 @@ module.exports = function(app , passport){
 
     app.post('/signup',function(req,res){
         var user = new User(req.body);
-        user.save().then(function(result){
-            console.log(result);
-            req.login(req.body,function(err){
-              if(!err){
-                console.log(req.user);
-                res.redirect('auth/profile');
-                
-              }else{
-                console.log("ME");
-                res.redirect('/');
-              }
-            });
+
+        User.findOne({username: req.body.username}).then(function(result){
+          if(result==undefined || result==null){
+            user.save().then(function(result){
+              console.log(result);
+              req.login(req.body,function(err){
+                if(!err){
+                  console.log(req.user);
+                  res.send({redirect:'/home/profile',message: "Account Made!!"});
+                                             
+                }else{
+                  console.log("ME");
+                  res.send({redirect: '/signup',message:"Server Error"});
+                  }
+              });
+          });
+          }
+          else{
+            console.log("User already Present");
+            res.send({redirect: '/signup',message:"Username Already Present"});
+          }
         });
     }); 
 
 
-     app.get('/auth/profile',function(req,res){
-      res.send("req.user");
+     app.get('/home/profile',function(req,res){
+       if(!req.user){
+         res.redirect('/signup');
+       }else
+      res.json(req.user);
      });
      
 };

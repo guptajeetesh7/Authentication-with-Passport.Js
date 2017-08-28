@@ -1,6 +1,6 @@
 var app = angular.module('APP',[]);
 
-app.controller('signup',function($scope,$http){
+app.controller('signup',function($scope,$http,$location){
 
     $scope.Signup = function(){
 
@@ -8,8 +8,10 @@ app.controller('signup',function($scope,$http){
 
             $http.post('/signup',{username : $scope.username , password : $scope.password})
             .then(function(response){
-                console.log("YES");
-                alert("DONE");
+                console.log(response.data.redirect);
+                window.location = response.data.redirect;
+
+                alert(response.data.message);
             },function(){   
                 console.log("NO");
                 alert("PROB");    

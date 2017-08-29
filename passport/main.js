@@ -16,5 +16,6 @@ module.exports = function(passport,app){
     });
 
     require('./strategies/local')(passport);
+    require('./strategies/google')(passport);
 
 }

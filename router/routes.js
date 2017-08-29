@@ -32,10 +32,6 @@ module.exports = function(app , passport){
 
 
 
-
-
-
-
      app.get('/signup',function(req,res){
         res.render('signup');
      });
@@ -65,6 +61,18 @@ module.exports = function(app , passport){
           }
         });
     }); 
+
+    app.get('/auth/google',passport.authenticate('google',{
+      scope: ['https://www.googleapis.com/auth/userinfo.profile','https://www.googleapis.com/auth/userinfo.email']
+    }))
+
+
+    app.get('/auth/google/callback', 
+    passport.authenticate('google', { failureRedirect: '/' }),
+    function(req, res) {
+      // Successful authentication, redirect home.
+      res.redirect('/home/profile');
+    });
 
 
      app.get('/home/profile',function(req,res){

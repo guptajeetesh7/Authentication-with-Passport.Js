@@ -2,6 +2,7 @@
 <head>
     <title>Login Portal</title>
     <link href="./styles/styles.css" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src='./angular.js'></script>
 </head>    
@@ -16,6 +17,12 @@
             <button type="submit">login</button>
             <p class="message">Not registered? <a href="/signup">Create an account</a></p>
           </form>
+          <p><strong>OR</strong></p>
+
+          <form action="/auth/google">
+          <button type="submit">Sign In with <i class="fa fa-google-plus"></i></button>
+          </form>
+
         </div>
       </div>
 </body>
